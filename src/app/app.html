@@ -1,3 +1,22 @@
-<app-navbar></app-navbar>
-<app-sidebar></app-sidebar>
-<router-outlet></router-outlet>
+<div class="flex  h-screen w-screen bg-[#F5F5F9] dark:bg-gray-900 overflow-x-hidden">
+    <app-overlay />
+    <!-- Sidebar Wrapper -->
+    <div class="flex-shrink-0 transition-all duration-500 ease-in-out md:relative absolute h-full z-100"
+        [ngClass]="{
+        'w-60': sidebarService.isOpen$(),
+        'w-0': !sidebarService.isOpen$()
+        }">
+        <app-sidebar />
+    </div>
+
+    <!--Main Content Wrapper-->
+    <div class="flex flex-col flex-1 min-w-0 p-4 transition-all duration-500" >
+        <app-navbar />
+        <router-outlet />
+    </div>
+
+    
+    
+</div>
+
+
