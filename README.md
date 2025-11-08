@@ -16,6 +16,22 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`.
 
+## Screenshots
+
+### Dashboard View
+![Dashboard](screenshots/dashboard.png)
+*Overview of tasks with charts and statistics*
+
+### Tasks View
+![Tasks](screenshots/tasks.png)
+*Kanban-style board showing tasks organized by status (New, Active, Closed)*
+
+### Add/Edit Task Dialog
+![Add Task](screenshots/add-task.png)
+![Delete Task](screenshots/edit-task.png)
+![Edit Task](screenshots/delete-task.png)
+*Dialog form for creating or editing tasks*
+
 ## Project Structure 
 I have Used the following structure so I can achieve :
 - Clear separation: core services, shared utilities, features, layout
