@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
-import { SidebarService } from '../shared/sidebar';
+import { Component, inject } from '@angular/core';
+import { SidebarService } from '../../core/services/sidebar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,9 +10,7 @@ import { SidebarService } from '../shared/sidebar';
 })
 export class Navbar {
 
-
-  constructor(public sidebarService: SidebarService) { }
-
+  sidebarService = inject(SidebarService);
   handleToggle() {
     this.sidebarService.toggleMobileOpen();
   }

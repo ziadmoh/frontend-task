@@ -1,10 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { Navbar } from "./navbar/navbar";
-import { Sidebar } from "./sidebar/sidebar";
+import { Component , inject} from '@angular/core';
+import { Navbar } from "./layout/navbar/navbar";
+import { Sidebar } from "./layout/sidebar/sidebar";
 import { RouterOutlet } from '@angular/router';
 import { NgClass } from '@angular/common';
-import { SidebarService } from './shared/sidebar';
-import { Overlay } from './overlay/overlay';
+import { SidebarService } from './core/services/sidebar.service';
+import { Overlay } from './layout/overlay/overlay';
 @Component({
   selector: 'app-root',
   imports: [ Navbar, Sidebar, RouterOutlet,NgClass,Overlay],
@@ -12,6 +12,6 @@ import { Overlay } from './overlay/overlay';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('task-management');
-  constructor(public sidebarService: SidebarService) { }
+  sidebarService = inject(SidebarService);
+
 }

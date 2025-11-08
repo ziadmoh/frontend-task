@@ -1,0 +1,45 @@
+<div class="task-card">
+    <div class="flex justify-between items-start ">
+        <span class="flex items-center gap-2">
+            <svg fill="#000000" width="9px" height="9px" viewBox="0 0 0.563 0.563" version="1.2" baseProfile="tiny"
+                xmlns="http://www.w3.org/2000/svg" overflow="inherit"
+                [ngClass]="{
+                    'fill-[#40A737]': task().category === 'Dev',
+                    'fill-[#18B0FF]': task().category === 'Test',
+                    'fill-[#FF2473]': task().category === 'UI',
+                    'fill-[#ff9c1c]': task().category === 'Db'
+                    }">
+                <path cx="25" cy="25" r="24"
+                    d="M0.551 0.281A0.27 0.27 0 0 1 0.281 0.551A0.27 0.27 0 0 1 0.011 0.281A0.27 0.27 0 0 1 0.551 0.281z" />
+            </svg>
+
+            <span class="capitalize  text-xs font-medium uppercase text-primary">{{task().category}}</span>
+        </span>
+
+        <p-menu #menu [model]="items" [popup]="true" />
+        <p-button (click)="menu.toggle($event)" [text]="true" icon="pi pi-ellipsis-h" styleClass="p-0 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-all duration-200" />
+
+    </div>
+
+    <h3 class="mb-2 mr-10 text-lg font-medium text-black dark:text-white/90 "> {{ task().title }} </h3>
+
+    <p class="text-md text-black font-regular  mb-2">{{task().description}}</p>
+
+    <div class="flex items-center gap-2">
+
+        <span class="text-sm text-white bg-blue-500 rounded-full w-8 h-8 flex items-center justify-center"> {{ task().assignedTo | assigneeName }} </span>
+    
+        <div>
+            <i class="pi pi-clock"></i>
+        <span> {{ task().estimatedHours }} H</span>
+        </div>
+    
+        <div>
+            <i class="pi pi-calendar"></i>
+            <span> {{ task().dueDate | date:'dd/MM' }} </span>
+        </div>
+    </div>
+
+</div>
+<p-toast />
+<p-confirmdialog />

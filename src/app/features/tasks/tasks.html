@@ -1,0 +1,172 @@
+<div class="w-full">
+    <div class="flex justify-between items-center gap-4">
+        <h1 class="font-medium text-3xl">Tasks</h1>
+        <p-button label="Add Task" icon="pi pi-plus" (click)="showDialog()" />
+    </div>
+
+    <!--Tasks Grid-->
+   <div class=" mt-4 flex lg:flex-row flex-col h-100">
+        <div class=" w-full status-card">
+            <h2 class="text-md font-medium">New</h2>
+            <div class="col-content overflow-y-auto h-[90%] pr-2">
+                @for (task of newTasks(); track task.id) {
+                    <app-task [task]="task" (taskDeletion)="handleTaskDeletion($event)" (taskEdit)="handleTaskEdit($event)" />
+                }
+            </div>
+           
+        </div>
+        <div class=" w-full status-card">
+            <h2 class="text-md font-medium">Active</h2>
+            <div class="col-content overflow-y-auto h-[90%] pr-2 mt-2">
+                @for (task of activeTasks(); track task.id) {
+                    <app-task [task]="task" (taskDeletion)="handleTaskDeletion($event)" (taskEdit)="handleTaskEdit($event)" />
+                }
+            </div>
+        </div>
+        <div class=" w-full status-card">
+            <h2 class="text-md font-medium">Closed</h2>
+            <div class="col-content overflow-y-auto h-[90%] pr-2 mt-2">
+                @for (task of closedTasks(); track task.id) {
+                    <app-task [task]="task" (taskDeletion)="handleTaskDeletion($event)" (taskEdit)="handleTaskEdit($event)" />
+                }
+            </div>
+        </div>
+   
+   </div>
+
+   <!--Add/Edit Task Dialog-->
+
+    <p-dialog [header]="dialogHeader" [modal]="true" [(visible)]="visible" [style]="{ width: '32rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" 
+        styleClass="modern-dialog">
+        <form [formGroup]="taskForm" class="space-y-5">
+            <!-- Title Field -->
+            <div class="flex flex-col gap-2">
+                <label for="title" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Title <span class="text-red-500">*</span>
+                </label>
+                <input 
+                    pInputText 
+                    id="title" 
+                    formControlName="title"
+                    placeholder="Enter task title"
+                    class="form-input" />
+            </div>
+
+            <!-- Description Field -->
+            <div class="flex flex-col gap-2">
+                <label for="description" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Description <span class="text-red-500">*</span>
+                </label>
+                <textarea 
+                    pTextarea 
+                    id="description" 
+                    formControlName="description"
+                    placeholder="Enter task description"
+                    rows="4"
+                    class="form-textarea"></textarea>
+            </div>
+
+            <!-- Assigned To Field -->
+            <div class="flex flex-col gap-2">
+                <label for="assignedTo" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Assigned To <span class="text-red-500">*</span>
+                </label>
+                <input 
+                    pInputText 
+                    id="assignedTo" 
+                    formControlName="assignedTo" 
+                    placeholder="Enter assignee name"
+                    class="form-input" />
+            </div>
+
+            <!-- Due Date Field -->
+            <div class="flex flex-col gap-2">
+                <label for="dueDate" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Due Date <span class="text-red-500">*</span>
+                </label>
+                <p-datepicker 
+                    formControlName="dueDate" 
+                    placeholder="Select due date" 
+                    appendTo="body" 
+                    dateFormat="dd/mm/yy"
+                    inputId="dueDate"
+                    [showIcon]="true"
+                    iconDisplay="input"
+                    inputStyleClass="form-input"
+                    styleClass="w-full" />
+            </div>
+
+            <!-- Estimated Hours Field -->
+            <div class="flex flex-col gap-2">
+                <label for="estimatedHours" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Estimated Hours <span class="text-red-500">*</span>
+                </label>
+                <p-inputnumber 
+                    inputId="estimatedHours" 
+                    formControlName="estimatedHours" 
+                    placeholder="Enter hours"
+                    [min]="0"
+                    [max]="1000"
+                    [showButtons]="true"
+                    [step]="0.5"
+                    inputStyleClass="form-input"
+                    styleClass="w-full" />
+            </div>
+
+            <!-- Category Field -->
+            <div class="flex flex-col gap-2">
+                <label for="category" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Category <span class="text-red-500">*</span>
+                </label>
+                <p-select 
+                    [options]="categories" 
+                    formControlName="category"  
+                    optionLabel="name" 
+                    optionValue="value" 
+                    placeholder="Select category" 
+                    inputId="category"
+                    appendTo="body"
+                    styleClass="w-full"
+                    panelStyleClass="rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg"
+                    [virtualScroll]="false" />
+            </div>
+
+            <!-- Status Field -->
+            <div class="flex flex-col gap-2">
+                <label for="status" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Status <span class="text-red-500">*</span>
+                </label>
+                <p-select 
+                    [options]="statuses" 
+                    formControlName="status" 
+                    optionLabel="name" 
+                    optionValue="value" 
+                    placeholder="Select status" 
+                    inputId="status"
+                    appendTo="body"
+                    styleClass="w-full"
+                    panelStyleClass="rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg"
+                    [virtualScroll]="false" />
+            </div>
+
+            <!-- Form Actions -->
+            <div class="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <p-button 
+                    label="Cancel" 
+                    icon="pi pi-times" 
+                    (click)="cancel()" 
+                    [outlined]="true"
+                    severity="secondary"
+                    styleClass="px-6 py-2.5 rounded-lg font-medium transition-all duration-200 hover:shadow-md" />
+                <p-button 
+                    [label]="dialogHeader" 
+                    [icon]="dialogHeader === 'Add Task' ? 'pi pi-plus' : 'pi pi-check'" 
+                    (click)="handleTaskAction()" 
+                    styleClass="px-6 py-2.5 rounded-lg font-medium transition-all duration-200 hover:shadow-md"
+                     />
+            </div>
+        </form>
+    </p-dialog>
+</div>
+
+<p-toast />

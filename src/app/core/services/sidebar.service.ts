@@ -4,7 +4,7 @@ import { Injectable, signal } from '@angular/core';
 })
 export class SidebarService {
 
-  isOpen$ = signal<boolean>(false);
+  isOpen$ = signal<boolean>(true);
 
   toggleMobileOpen() {
     this.isOpen$.set(!this.isOpen$());
