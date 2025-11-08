@@ -1,4 +1,4 @@
-# Task Management (PLS read this file before proceeding with the code running)
+# Task Management 
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.
 
@@ -22,12 +22,12 @@ I have Used the following structure so I can achieve :
 - Scalability: easy to add features
 - Maintainability: easier to locate files
 
+```
 src/app/
 ├── core/                          # services
 │   └── services/
 │       ├── tasks-state.service.ts
 │       └── sidebar.service.ts
-│    
 │
 ├── shared/                        # Shared pipes, models
 │   ├── pipes/
@@ -70,7 +70,7 @@ src/app/
 │       └── overlay.spec.ts
 │
 ├── data/                          # Data access layer
-│   ├── tasks-crud.ts
+│   ├── tasks-crud.service.ts
 │   └── inmemory.api.ts
 │
 ├── app.ts
@@ -79,12 +79,15 @@ src/app/
 ├── app.config.ts
 ├── app.routes.ts
 └── app.spec.ts
+```
 
 
 
 
 
 ## Data flow mind map
+
+```
                     TASK MANAGEMENT APPLICATION - DATA FLOW
                     =========================================
 
@@ -205,7 +208,7 @@ src/app/
 │    tasks = tasksStateService.tasks (signal)                                 │
 │    newTasks = computed(() => filter by New)                                 │
 │    activeTasks = computed(() => filter by Active)                           │
-│    closedTasks = computed() => filter by Closed)                            │
+│    closedTasks = computed(() => filter by Closed)                           │
 │                                                                             │
 │  User Actions:                                                              │
 │                                                                             │
@@ -343,38 +346,43 @@ KEY ARCHITECTURAL PATTERNS:
    - Service Layer: TasksCrudService
    - State Layer: TasksStateService
    - Presentation Layer: Components
+```
 
 ## Resources & Helpers 
+
 I have used the following resources while completing this task:
-1- UI Libraries : 
-    - https://tailwindcss.com/
-    - https://primeng.org/
 
+### 1. UI Libraries
+- [Tailwind CSS](https://tailwindcss.com/)
+- [PrimeNG](https://primeng.org/)
 
-2- UI/UX the design is inspired from the following resources : 
-    - https://www.figma.com/design/sif0MCfHUhMb8Kl4TA6utl/Web-Dashboard-UI---Task---Project-Management--Community-?node-id=12-2&t=oHR1Qa1WcToo7bSm-0
-    - https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/html/index.html
-    - https://angular-demo.tailadmin.com/
-    - https://www.behance.net/gallery/152364503/UI-14-Project-Management-Create-Tasks?tracking_source=search_projects|add+task+popup&l=34
+### 2. UI/UX Design Inspiration
+- [Figma - Web Dashboard UI Task/Project Management](https://www.figma.com/design/sif0MCfHUhMb8Kl4TA6utl/Web-Dashboard-UI---Task---Project-Management--Community-?node-id=12-2&t=oHR1Qa1WcToo7bSm-0)
+- [Sneat Bootstrap HTML Admin Template](https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/html/index.html)
+- [Angular Demo - TailAdmin](https://angular-demo.tailadmin.com/)
+- [Behance - Project Management Create Tasks](https://www.behance.net/gallery/152364503/UI-14-Project-Management-Create-Tasks?tracking_source=search_projects|add+task+popup&l=34)
 
-3- Logo used from : 
-    - https://logoipsum.com/
+### 3. Logo
+- [Logoipsum](https://logoipsum.com/)
 
-4- SVGs, Icons and Charts : 
-    - https://www.svgviewer.dev/
-    - https://primeng.org/icons
-    - https://primeng.org/chart
+### 4. SVGs, Icons and Charts
+- [SVG Viewer](https://www.svgviewer.dev/)
+- [PrimeNG Icons](https://primeng.org/icons)
+- [PrimeNG Charts](https://primeng.org/chart)
 
-5- Coding & implementation
-    i used the following resources to help me with some parts that i wasn't completely sure of : 
-        In-Memory-Web-API
-        - https://www.youtube.com/watch?v=swBN7qrYTq0
-        - https://www.concretepage.com/angular/in-memory-web-api-angular-standalone
-        Tailwind Crash course
-        - https://www.youtube.com/watch?v=6biMWgD6_JY&list=PPSV
-        Angular Docs
-        - https://angular.dev/
+### 5. Coding & Implementation
+I used the following resources to help with parts I wasn't completely sure of:
 
-6- Issues I Faced and AI Usage 
-    - I checked stackoverflow & ChatGTP sometimes to search issues appeared while coding
-    - I am using cursor AI as my default coding editor, So i have used its "autocomplete feature" in some small parts like tailwind css classes suggestions. It also helped me create the "Mind map of the data flow" of the app and "the files structure map"
+**In-Memory-Web-API:**
+- [YouTube Tutorial](https://www.youtube.com/watch?v=swBN7qrYTq0)
+- [ConcretePage - In-Memory Web API Angular Standalone](https://www.concretepage.com/angular/in-memory-web-api-angular-standalone)
+
+**Tailwind Crash Course:**
+- [YouTube Tutorial](https://www.youtube.com/watch?v=6biMWgD6_JY&list=PPSV)
+
+**Angular Documentation:**
+- [Angular Docs](https://angular.dev/)
+
+### 6. Issues I Faced and AI Usage
+- I checked StackOverflow & ChatGPT sometimes to search for issues that appeared while coding
+- I am using Cursor AI as my default coding editor, so I have used its "autocomplete feature" in some small parts like Tailwind CSS class suggestions. It also helped me create the "Mind map of the data flow" of the app and "the files structure map"
